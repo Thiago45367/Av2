@@ -1,0 +1,28 @@
+create database Av2;
+
+use Av2;
+
+CREATE TABLE IF NOT EXISTS `Paciente` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
+    CPF VARCHAR(30) NOT NULL UNIQUE,
+    Telefone VARCHAR(30) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS `Medico` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(50) NOT NULL,
+    Especialidade VARCHAR(50) NOT NULL,
+    CRM VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS `Consulta` (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_paciente INT NOT NULL,
+    id_medico INT NOT NULL,
+    Data DATE NOT NULL,
+    Hora TIME NOT NULL,
+    Observacao VARCHAR(50) NOT NULL,
+    FOREIGN KEY (id_paciente) REFERENCES Paciente(id),
+    FOREIGN KEY (id_medico) REFERENCES Medico(id)
+);
